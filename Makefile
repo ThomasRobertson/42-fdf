@@ -16,7 +16,7 @@
 
 NAME= fdf
 
-# CC= gcc
+# CC= clang
 CFLAGS= -Wall -Werror -Wextra -g $(INCLUDE)
 LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm -lft
 INCLUDE = -I$(INCLUDE_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
@@ -35,7 +35,11 @@ SRC_DIR= src/
 # **************************************************************************** #
 
 SRC_FILE=	\
-			main.c
+			color_rgba.c \
+			color_struct.c \
+			color.c \
+			main.c \
+			utils.c
 
 SRC=		$(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJ_FILE= 	$(SRC_FILE:.c=.o)
@@ -158,10 +162,10 @@ clean: header cleanobjdir cleanlibft
 	
 cleanlibft:
 	make -C $(LIBFT_DIR) clean
+	make -C $(MLX_DIR) clean
 
 fcleanlibft:
 	make -C $(LIBFT_DIR) fclean
-	rm -f libft.a
 
 fclean: header clean fcleanlibft
 	${HEADER_FCLEAN}
@@ -176,7 +180,7 @@ norm: header
 	@echo "$(COLOR_CYAN)"
 	-python3 -m norminette $(SRC_DIR)
 	@echo "$(COLOR_PURPLE)"
-	-python3 -m norminette $(INCLUDES)
+	-python3 -m norminette $(INCLUDE_DIR)
 	@echo "$(COLOR_END)"
 
 .PHONY: all clean fclean re norm header makelibf cleanobj cleanobjdir fcleanlibft bonus
