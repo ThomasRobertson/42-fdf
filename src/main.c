@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2022/09/25 20:45:11 by troberts         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:06:25 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 int	main(void)
 {
 	t_mlx	mlx;
-	t_data	img;
+	t_img	img;
+	int		i;
 
-	mlx.mlx_ptr = mlx_init();
-	if (mlx.mlx_ptr == NULL)
+	if (init_window(&mlx))
 		return (EXIT_FAILURE);
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1280, 720, "Hello world!");
-	if (mlx.win_ptr == NULL)
-		return (EXIT_FAILURE);
-	img.img = mlx_new_image(mlx.mlx_ptr, 1280, 720);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-										&img.line_length, &img.endian);
-	int i = 5;
-	while (i < 50)
+	if (ft_mlx_new_image(mlx, &img))
+		return (clean_window_display(mlx, EXIT_FAILURE));
+	i = 5;
+	while (i < 500)
 	{
 		ft_mlx_pixel_put(&img, i, 5, 0x00FF0000);
 		i++;
 	}
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img, 0, 0);
-	mlx_hook(mlx.win_ptr, 2, 1L<<0, close_window, &mlx);
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img_ptr, 0, 0);
+	mlx_loop_hook(mlx.mlx_ptr, &handle_no_event, &mlx);
+	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &mlx);
+	mlx_hook(mlx.win_ptr, KeyRelease, KeyReleaseMask, &handle_keypress, &mlx);
 	mlx_loop(mlx.mlx_ptr);
+	mlx_destroy_image(mlx.mlx_ptr, img.img_ptr);
+	return (clean_display(mlx, EXIT_SUCCESS));
 }
