@@ -18,7 +18,7 @@ NAME= fdf
 
 # CC= clang
 CFLAGS= -Wall -Werror -Wextra -g $(INCLUDE)
-LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm -lft
+LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11
 INCLUDE = -I$(INCLUDE_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 LIBFT_DIR= libft
@@ -35,9 +35,12 @@ SRC_DIR= src/
 # **************************************************************************** #
 
 SRC_FILE=	\
+			clean.c \
 			color_rgba.c \
 			color_struct.c \
 			color.c \
+			handle.c \
+			init.c \
 			main.c \
 			utils.c
 
