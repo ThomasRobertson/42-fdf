@@ -11,3 +11,5 @@ jobs:
       with :
         submodules: true
     - uses: alexandregv/norminette-action@v3
+      with:
+        flags: 'include libft src'
