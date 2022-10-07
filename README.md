@@ -23,10 +23,10 @@
     <img src="https://img.shields.io/github/license/ThomasRobertson/42-fdf"
          alt="License">
   </a>
-  <a href="https://github.com/ThomasRobertson/42-fdf/actions/workflows/build-action.yml">
+<!---  <a href="https://github.com/ThomasRobertson/42-fdf/actions/workflows/build-action.yml">
     <img src="https://github.com/ThomasRobertson/42-fdf/workflows/Build/badge.svg"
          alt="Norminette Action">
-  </a> 
+  </a> --->
   <a href="https://github.com/ThomasRobertson/42-fdf/actions/workflows/norminette-action.yml">
     <img src="https://github.com/ThomasRobertson/42-fdf/workflows/Norm Check/badge.svg"
          alt="Norminette Action">
