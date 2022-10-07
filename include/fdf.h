@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/10/04 15:37:53 by troberts         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:59:36 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,18 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define WIN_W 800
-# define WIN_H 400
+# define WIN_W 612
+# define WIN_H 612
 
-# define RETURN_SUCCESS 0
-# define RETURN_FAILURE 1
+# define DEFAULT_COLOR 0xFFFFFFFF
+
+typedef struct s_line {
+	int		x1;
+	int		y1;
+	int		x2;
+	int		y2;
+	int		color;
+}			t_line;
 
 typedef struct s_mlx {
 	void	*mlx_ptr;
@@ -56,6 +63,9 @@ int		get_a(int argb);
 int		get_r(int argb);
 int		get_g(int argb);
 int		get_b(int argb);
+
+//DRAW_LINE
+void	drawline(t_img img, t_line line);
 
 //HANDLE
 int		handle_no_event(void *data);
