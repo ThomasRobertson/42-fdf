@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2022/10/04 16:06:25 by troberts         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:52:05 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@ int	main(void)
 {
 	t_mlx	mlx;
 	t_img	img;
-	int		i;
+	t_line	line;
 
 	if (init_window(&mlx))
 		return (EXIT_FAILURE);
 	if (ft_mlx_new_image(mlx, &img))
 		return (clean_window_display(mlx, EXIT_FAILURE));
-	i = 5;
-	while (i < 500)
-	{
-		ft_mlx_pixel_put(&img, i, 5, 0x00FF0000);
-		i++;
-	}
+	line.x1 = 20;
+	line.y1 = 20;
+	line.x2 = 500;
+	line.y2 = 800;
+	line.color = 0xFF00FF00;
+	ft_mlx_pixel_put(&img, 500, WIN_H, 0xFF00FF00);
+	drawline(img, line);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img_ptr, 0, 0);
 	mlx_loop_hook(mlx.mlx_ptr, &handle_no_event, &mlx);
 	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &mlx);
