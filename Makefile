@@ -39,6 +39,7 @@ SRC_FILE=	\
 			color_rgba.c \
 			color_struct.c \
 			color.c \
+			draw_line.c \
 			handle.c \
 			init.c \
 			main.c \
@@ -77,8 +78,15 @@ HEADER =			@echo "${COLOR_CYAN}\
 					\n/*         \#+\#    \#+\#                     <troberts@student.42.fr>            */\
 					\n/*        \#\#\#   \#\#\#\#\#\#\#\#.fr                                                   */\
 					\n/*                                                                            */\
-					\n/* ************************************************************************** */\n\
-					${COLOR_END}"
+					\n/* ************************************************************************** */\
+					\n \
+					\n \
+					\n NAME: $(NAME) \
+					\n \
+					\n CC: $(CC) \
+					\n CFLAGS: $(CFLAGS) \
+					\n LDFLAGS: $(LDFLAGS) \
+					\n${COLOR_END}"
 
 HEADER_COMPIL =	@echo "${COLOR_YELLOW}\
 					\n/* ************************************************************************** */\
@@ -125,7 +133,7 @@ all: $(NAME)
 $(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJ)
 	$(HEADER)
 	$(HEADER_COMPIL)
-	$(CC) -o $@ $(OBJ) $(LDFLAGS)
+	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(LIBFT_LIB)
 
 bonus: $(NAME)
 
@@ -176,6 +184,9 @@ fclean: header clean fcleanlibft
 
 re: header fclean all
 
+reobj: cleanobj
+	$(NAME)
+
 norm: header
 	${HEADER_NORM}
 	@echo "$(COLOR_GREEN)"
@@ -186,4 +197,4 @@ norm: header
 	-python3 -m norminette $(INCLUDE_DIR)
 	@echo "$(COLOR_END)"
 
-.PHONY: all clean fclean re norm header makelibf cleanobj cleanobjdir fcleanlibft bonus
+.PHONY: all clean fclean re reobj norm header makelibf cleanobj cleanobjdir fcleanlibft bonus
