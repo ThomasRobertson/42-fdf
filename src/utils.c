@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 01:26:58 by troberts          #+#    #+#             */
-/*   Updated: 2022/10/07 15:59:12 by troberts         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:15:23 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 		i -= 8;
 	}
 }
-
