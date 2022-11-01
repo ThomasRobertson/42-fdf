@@ -6,15 +6,15 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:16 by troberts          #+#    #+#             */
-/*   Updated: 2022/10/07 16:13:40 by troberts         ###   ########.fr       */
+/*   Updated: 2022/10/07 21:33:35 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_line	fill_t_line(int x1, int y1, int x2, int y2)
+t_draw_line	fill_t_line(int x1, int y1, int x2, int y2)
 {
-	t_line	line;
+	t_draw_line	line;
 
 	line.x1 = x1;
 	line.y1 = y1;
@@ -24,7 +24,7 @@ t_line	fill_t_line(int x1, int y1, int x2, int y2)
 	return (line);
 }
 
-void	drawline(t_img img, t_line line)
+void	drawline(t_img img, t_draw_line line)
 {
 	int	x;
 	int	y;

@@ -19,6 +19,8 @@ NAME= fdf
 # CC= clang
 CFLAGS= -Wall -Werror -Wextra -g $(INCLUDE)
 LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11
+DEPFLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
+
 INCLUDE = -I$(INCLUDE_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 LIBFT_DIR= libft
@@ -29,7 +31,7 @@ MLX_LIB= $(MLX_DIR)/libmlx_Linux.a
 INCLUDE_DIR= include
 OBJ_DIR= obj/
 SRC_DIR= src/
-
+DEP_DIR= dep/
 # **************************************************************************** #
 #                                .C & .H FILES                                 #
 # **************************************************************************** #
@@ -43,12 +45,14 @@ SRC_FILE=	\
 			handle.c \
 			init.c \
 			main.c \
+			parse_map.c \
 			utils.c
 
 SRC=		$(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJ_FILE= 	$(SRC_FILE:.c=.o)
 OBJ=		$(addprefix $(OBJ_DIR), $(OBJ_FILE))
-
+DEP_FILE=	$(SRC_FILE:.c=.o)
+DEP=		$(addprefix $(DEP_DIR), $(DEP_FILE))
 #OBJ=	$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 # **************************************************************************** #
@@ -159,6 +163,14 @@ $(OBJ_DIR):
 $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# $(DEP): | $(DEP_DIR)
+# 
+# $(DEP_DIR):
+# 	mkdir -p $@
+# 
+# $(DEP): $(SRC_DIR)%.c
+# 	$(CC) $(CFLAGS) -MM -MF $@ -MT $(OBJ_DIR)$*.o $<
+# 
 header:
 	$(HEADER)
 
@@ -185,7 +197,7 @@ fclean: header clean fcleanlibft
 re: header fclean all
 
 reobj: cleanobj
-	$(NAME)
+	make -C .
 
 norm: header
 	${HEADER_NORM}
@@ -198,3 +210,22 @@ norm: header
 	@echo "$(COLOR_END)"
 
 .PHONY: all clean fclean re reobj norm header makelibf cleanobj cleanobjdir fcleanlibft bonus
+
+# include $(DEP)
+
+# DEP_CFLAGS=-MM -MD
+# ALL_CFLAGS=-I ./inc -Wall -Wextra -Werror
+# src=$(wildcard *.c)
+# dep=$(src:.c=.d)
+# 
+# ... (other flags, other rules like all etc.)
+# 
+# %.o:%.c
+#     $(CC) -c $< $(ALL_CFLAGS) -o $@
+# %.d:%.c
+#     $(CC) $< $(DEP_FLAGS) $(ALL_CFLAGS) -o $@
+# 
+# ... (other rules etc.)
+# 
+# #This below has to be at the end of the Makefile, else it does not work
+# -include $(dep)
