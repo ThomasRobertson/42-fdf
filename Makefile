@@ -17,7 +17,7 @@
 NAME= fdf
 
 # CC= clang
-CFLAGS= -Wall -Werror -Wextra -g $(INCLUDE)
+CFLAGS= -Wall -Werror -Wextra -g3 $(INCLUDE)
 LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm
 DEPFLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
 
