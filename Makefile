@@ -16,7 +16,7 @@
 
 NAME= fdf
 
-# CC= clang
+CC= clang
 CFLAGS= -Wall -Werror -Wextra -g3 $(INCLUDE)
 LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm
 DEPFLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
@@ -44,6 +44,7 @@ SRC_FILE=	\
 			convert_3d.c \
 			draw_line.c \
 			draw_map.c \
+			error_main.c \
 			find_min_max.c \
 			handle.c \
 			init.c \
@@ -145,6 +146,9 @@ $(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJ)
 	$(HEADER)
 	$(HEADER_COMPIL)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(LIBFT_LIB)
+
+malloc_test: $(LIBFT_LIB) $(MLX_LIB) $(OBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) -fsanitize=undefined -rdynamic -o $@ $(OBJ) $(LIBFT_LIB) $(MLX_LIB) -L. -lmallocator
 
 bonus: $(NAME)
 
