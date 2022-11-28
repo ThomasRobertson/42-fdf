@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/27 21:56:23 by troberts         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:24:49 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,10 @@ int	parse_map(char *filename, t_map_data *map)
 	if (!count_line(lines, &map->nbr_line))
 		return (RETURN_FAILURE);
 	if (!get_map_from_t_list(lines, map))
+	{
+		ft_lstclear(&lines, wrapper_lstclear);
 		return (RETURN_FAILURE);
+	}
+	ft_lstclear(&lines, wrapper_lstclear);
 	return (RETURN_SUCCESS);
 }

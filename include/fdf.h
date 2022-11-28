@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/27 22:20:34 by troberts         ###   ########.fr       */
+/*   Updated: 2022/11/28 18:37:37 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_color {
 // CLEAN
 int			clean_display(t_mlx mlx, int return_code);
 int			clean_window_display(t_mlx mlx, int return_code);
+void		clean_map(t_map_data *map);
 
 // COLOR
 int			convert_to_argb(int t, int r, int g, int b);
