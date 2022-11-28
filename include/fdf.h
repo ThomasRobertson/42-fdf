@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 18:37:37 by troberts         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:19:52 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,11 @@ t_map_point	get_start_end_point_y(t_map_data map, t_map_point *start, \
 									int x, int y);
 void		draw_3d(t_map_data map, t_img img);
 void		process_start_and_point(t_map_data map, t_map_point *start, t_map_point *end);
+
+// ERROR MAIN
+int			error_args(void);
+int			error_init_windows(t_map_data map);
+int			error_new_image(t_mlx mlx, t_map_data map);
 
 // FIND MIN MAX
 void		find_max_min_x(t_map_data map, double *min, double *max, t_bool convert_3d);

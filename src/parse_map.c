@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 18:24:49 by troberts         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:22:44 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,24 @@ int	get_lines(char *filename, t_list **lines)
 		line_tmp = malloc(sizeof(*line_tmp));
 		if (line_tmp == NULL)
 		{
+			free(line_gnl);
 			ft_lstclear(lines, wrapper_lstclear);
-			ft_error_return(STDOUT_FILENO, NULL, RETURN_FAILURE);
+			return (ft_error_return(STDOUT_FILENO, NULL, RETURN_FAILURE));
 		}
 		line_tmp->content = ft_split(line_gnl, ' ');
 		free(line_gnl);
 		if (line_tmp->content == NULL)
 		{
+			free(line_tmp);
 			ft_lstclear(lines, wrapper_lstclear);
-			ft_error_return(STDOUT_FILENO, NULL, RETURN_FAILURE);
+			return (ft_error_return(STDOUT_FILENO, NULL, RETURN_FAILURE));
 		}
 		line_tmp->next = NULL;
 		ft_lstadd_back(lines, line_tmp);
 	}
 	close(fd);
-	ft_printf("size: %u", ft_lstsize(*lines));
+	if (*lines == NULL)
+		return (RETURN_FAILURE);
 	return (RETURN_SUCCESS);
 }
 
@@ -79,11 +82,17 @@ t_map_point	**convert_to_t_map_point(char **line, int y, unsigned int line_len)
 	t_map_point	**row_ptr;
 
 	row_ptr = malloc(sizeof(*row_ptr) * (line_len + 1));
+	if (row_ptr == NULL)
+		return (NULL);
 	row_ptr[line_len] = NULL;
 	x = 0;
 	while ((unsigned int)x < line_len)
 	{
 		row_tmp = malloc(sizeof(*row_tmp));
+		if (row_tmp == NULL)
+		{
+			return (RETURN_FAILURE); // Todo : not everything is cleaned.
+		}
 		row_tmp->x = x;
 		row_tmp->y = y;
 		row_tmp->z = ft_atoi(line[x]);
@@ -112,6 +121,10 @@ int	get_map_from_t_list(t_list *lines, t_map_data *map)
 	while (lines)
 	{
 		map_ptr[i] = convert_to_t_map_point(lines->content, i, map->nbr_line);
+		if (map_ptr[i] == NULL)
+		{
+			return (RETURN_FAILURE); // Todo : not everything is cleaned.
+		}
 		i++;
 		lines = lines->next;
 	}
@@ -129,7 +142,10 @@ int	parse_map(char *filename, t_map_data *map)
 		return (RETURN_FAILURE);
 	map->nbr_row = (unsigned int)ft_lstsize(lines);
 	if (!count_line(lines, &map->nbr_line))
+	{
+		ft_lstclear(&lines, wrapper_lstclear);
 		return (RETURN_FAILURE);
+	}
 	if (!get_map_from_t_list(lines, map))
 	{
 		ft_lstclear(&lines, wrapper_lstclear);
