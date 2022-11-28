@@ -18,7 +18,7 @@ NAME= fdf
 
 # CC= clang
 CFLAGS= -Wall -Werror -Wextra -g $(INCLUDE)
-LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11
+LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm
 DEPFLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
 
 INCLUDE = -I$(INCLUDE_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
@@ -41,12 +41,19 @@ SRC_FILE=	\
 			color_rgba.c \
 			color_struct.c \
 			color.c \
+			convert_3d.c \
 			draw_line.c \
+			draw_map.c \
+			find_min_max.c \
 			handle.c \
 			init.c \
 			main.c \
+			math.c \
+			normalize.c \
 			parse_map.c \
-			utils.c
+			process_map.c \
+			utils.c \
+			utils2.c
 
 SRC=		$(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJ_FILE= 	$(SRC_FILE:.c=.o)

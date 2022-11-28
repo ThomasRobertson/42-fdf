@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2022/10/18 12:28:19 by troberts         ###   ########.fr       */
+/*   Updated: 2022/11/27 21:56:23 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	get_lines(char *filename, t_list **lines)
 	return (RETURN_SUCCESS);
 }
 
-int	count_line(t_list *lines, unsigned int *nbr_lines)
+int	count_line(t_list *lines, int *nbr_lines)
 {
-	unsigned int	size;
-	unsigned int	target_size;
-	char			**content_ptr;
+	int		size;
+	int		target_size;
+	char	**content_ptr;
 
 	target_size = 0;
 	content_ptr = lines->content;
@@ -69,27 +69,6 @@ int	count_line(t_list *lines, unsigned int *nbr_lines)
 	}
 	*nbr_lines = target_size;
 	return (RETURN_SUCCESS);
-
-/* 	unsigned int	size;
-	unsigned int	target_size;
-	char			**content_ptr;
-
-	target_size = 0;
-	content_ptr = lines->content;
-	while (lines->content[target_size])
-		target_size++;
-	while (lines)
-	{
-		size = 0;
-		while (lines->content[size])
-			size++;
-		if (size != target_size)
-			return (RETURN_FAILURE);
-		lines = lines->next;
-	}
-	*nbr_lines = target_size;
-	return (RETURN_SUCCESS);
- */
 }
 
 t_map_point	**convert_to_t_map_point(char **line, int y, unsigned int line_len)
@@ -143,6 +122,8 @@ int	parse_map(char *filename, t_map_data *map)
 {
 	t_list	*lines;
 
+	map->angle = ANGLE;
+	map->proj = DEFAULT_PROJ;
 	lines = NULL;
 	if (!get_lines(filename, &lines))
 		return (RETURN_FAILURE);
