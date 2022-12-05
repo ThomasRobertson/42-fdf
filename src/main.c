@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 22:37:21 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:44:52 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 		return (error_init_windows(map));
 	if (!ft_mlx_new_image(mlx, &img))
 		return (error_new_image(mlx, map));
+	fill_background(img);
 	// draw_3d(map, img);
  	// unsigned int x = 0;
 	// unsigned int y = 0;

@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/05 22:48:58 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:48:46 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 
 # define Z_RESOLUTION 2
 # define ANGLE 30
-# define DEFAULT_COLOR 0xFFFFFFFF
+# define DEFAULT_COLOR 0xFF93a1a1
+# define DEFAULT_COLOR_BG 0xFF073642
 # define DEFAULT_PROJ 1
 
 typedef enum e_proj
@@ -101,6 +102,8 @@ int			clean_window_display(t_mlx mlx, int return_code);
 void		clean_map(t_map_data *map);
 
 // COLOR
+void		fill_background(t_img img);
+
 int			convert_to_argb(int t, int r, int g, int b);
 
 int			get_a(int argb);
