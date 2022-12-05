@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 20:19:52 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:35:56 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@
 # define Z_RESOLUTION 2
 # define ANGLE 30
 # define DEFAULT_COLOR 0xFFFFFFFF
-# define DEFAULT_PROJ 0
+# define DEFAULT_PROJ 1
 
 typedef enum e_proj
 {
-	iso = 0
+	none = 0,
+	iso = 1
 }	t_proj;
 
 typedef struct s_map_point {
@@ -53,12 +54,25 @@ typedef struct s_map_point {
 	unsigned int	color;
 }			t_map_point;
 
+typedef struct s_min_max {
+	double	min;
+	double	max;
+}			t_min_max;
+
+typedef struct s_min_max_z {
+	int	min;
+	int	max;
+}		t_min_max_z;
+
 typedef struct s_map_data {
 	t_map_point		***map;
 	int				nbr_line;
 	int				nbr_row;
 	double			angle;
 	t_proj			proj;
+	t_min_max		x;
+	t_min_max		y;
+	t_min_max_z		z;
 }					t_map_data;
 
 typedef struct s_mlx {
@@ -118,9 +132,10 @@ int			error_init_windows(t_map_data map);
 int			error_new_image(t_mlx mlx, t_map_data map);
 
 // FIND MIN MAX
-void		find_max_min_x(t_map_data map, double *min, double *max, t_bool convert_3d);
-void		find_max_min_y(t_map_data map, double *min, double *max, t_bool convert_3d);
-void		find_max_min_z(t_map_data map, int *min, int *max);
+void		find_max_min_x(t_map_data *map);
+void		find_max_min_y(t_map_data *map);
+void		find_max_min_z(t_map_data *map);
+void		find_max_min(t_map_data *map);
 
 //HANDLE
 int			handle_no_event(void *data);
@@ -138,7 +153,7 @@ void		normalize_z(t_map_data map);
 void		normalize_y(t_map_data map, t_bool convert_3d);
 void		normalize_x(t_map_data map, t_bool convert_3d);
 void		normalize(t_map_data map, t_bool convert_3d);
-t_map_point	normalize_point(t_map_point point, t_map_data map, t_bool convert_3d);
+t_map_point	normalize_point(t_map_point point, t_map_data map);
 
 // PARSE MAP
 int			parse_map(char *filename, t_map_data *map);

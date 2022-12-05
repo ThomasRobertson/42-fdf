@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 22:22:44 by troberts         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:18:01 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,6 @@ int	parse_map(char *filename, t_map_data *map)
 		return (RETURN_FAILURE);
 	}
 	ft_lstclear(&lines, wrapper_lstclear);
+	find_max_min(map);
 	return (RETURN_SUCCESS);
 }

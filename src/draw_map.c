@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:54:10 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 20:45:14 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:44:20 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ void	draw_3d(t_map_data map, t_img img)
 void	process_start_and_point(t_map_data map, t_map_point *start, \
 															t_map_point *end)
 {
-	//*start = normalize_point(*start, map, false);
 	*start = convert_iso_point(*start, map);
-	*start = normalize_point(*start, map, true);
+	*start = normalize_point(*start, map);
 	*start = offset_point(*start, map);
-	//*end = normalize_point(*end, map, false);
 	*end = convert_iso_point(*end, map);
-	*end = normalize_point(*end, map, true);
+	*end = normalize_point(*end, map);
 	*end = offset_point(*end, map);
 }
 

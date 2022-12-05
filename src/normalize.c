@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:42:35 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/27 21:56:05 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:42:38 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,58 @@
 
 void	normalize_z(t_map_data map)
 {
-	int				min;
-	int				max;
 	int				x;
 	int				y;
 	t_map_point		*point;
 
-	max = INT_MIN;
-	min = INT_MAX;
 	y = 0;
-	find_max_min_z(map, &min, &max);
 	while (y < map.nbr_row)
 	{
 		x = 0;
 		while (x < map.nbr_line)
 		{
 			point = return_ptr_point(x, y, map);
-			point->z = Z_RESOLUTION * (point->z - min) / (max - min);
+			point->z = Z_RESOLUTION * (point->z - map.z.min) / (map.z.max - map.z.min);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	normalize_x(t_map_data map, t_bool convert_3d)
+void	normalize_x(t_map_data map)
 {
-	double			min;
-	double			max;
 	int				x;
 	int				y;
 	t_map_point		*point;
 
-	max = DBL_MIN;
-	min = DBL_MAX;
 	y = 0;
-	find_max_min_x(map, &min, &max, convert_3d);
 	while (y < map.nbr_row)
 	{
 		x = 0;
 		while (x < map.nbr_line)
 		{
 			point = return_ptr_point(x, y, map);
-			point->x = Z_RESOLUTION * (point->x - min) / (max - min);
+			point->x = Z_RESOLUTION * (point->x - map.x.min) / (map.x.max - map.x.min);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	normalize_y(t_map_data map, t_bool convert_3d)
+void	normalize_y(t_map_data map)
 {
-	double			min;
-	double			max;
 	int				x;
 	int				y;
 	t_map_point		*point;
 
-	max = DBL_MIN;
-	min = DBL_MAX;
 	y = 0;
-	find_max_min_y(map, &min, &max, convert_3d);
 	while (y < map.nbr_row)
 	{
 		x = 0;
 		while (x < map.nbr_line)
 		{
 			point = return_ptr_point(x, y, map);
-			point->y = Z_RESOLUTION * (point->y - min) / (max - min);
+			point->y = Z_RESOLUTION * (point->y - map.y.min) / (map.y.max - map.y.min);
 			x++;
 		}
 		y++;
@@ -94,29 +79,34 @@ void	normalize(t_map_data map, t_bool convert_3d)
 	normalize_z(map);
 }
 
-t_map_point	normalize_point(t_map_point point, t_map_data map, \
-															t_bool convert_3d)
+void	convert_min_max_3d(t_map_data *map)
 {
-	double	min;
-	double	max;
-	int		min_z;
-	int		max_z;
+	t_map_point	point;
 
-	(void)map;
-	max_z = INT_MIN;
-	min_z = INT_MAX;
-	find_max_min_z(map, &min_z, &max_z);
-	if (min_z != max_z)
-		point.z = Z_RESOLUTION * (point.z - min_z) / (max_z - min_z);
-	max = DBL_MIN;
-	min = DBL_MAX;
-	find_max_min_x(map, &min, &max, convert_3d);
-	if (min != max)
-		point.x = WIN_W * (point.x - min) / (max - min);
-	max = DBL_MIN;
-	min = DBL_MAX;
-	find_max_min_y(map, &min, &max, convert_3d);
-	if (min != max)
-		point.y = WIN_H * (point.y - min) / (max - min);
+	point.x = map->x.max;
+	point.y = map->y.max;
+	point.z = map->z.max;
+	point = convert_point(point, *map);
+	map->x.max = point.x;
+	map->y.max = point.y;
+	map->z.max = point.z;
+	point.x = map->x.min;
+	point.y = map->y.min;
+	point.z = map->z.min;
+	point = convert_point(point, *map);
+	map->x.min = point.x;
+	map->y.min = point.y;
+	map->z.min = point.z;
+}
+
+t_map_point	normalize_point(t_map_point point, t_map_data map)
+{
+	if (map.z.min != map.z.max)
+		point.z = Z_RESOLUTION * (point.z - map.z.min) / (map.z.max - \
+																	map.z.min);
+	if (map.x.min != map.x.max)
+		point.x = WIN_W * (point.x - map.x.min) / (map.x.max - map.x.min);
+	if (map.y.min != map.y.max)
+		point.y = WIN_H * (point.y - map.y.min) / (map.y.max - map.y.min);
 	return (point);
 }
