@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:16 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/27 22:02:32 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:47:45 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,7 @@
 
 void	drawline(t_img img, t_map_point const *start, t_map_point const *end)
 {
-	//printf("x: %i, y: %i - ", (int)start->x, (int)start->y); // DO REMOVE
-	//printf("x: %i, y: %i\n", (int)end->x, (int)end->y); // DO REMOVE
-	// if (start == NULL || end == NULL)
-	// 	return ;
-	// if (start->x == end->x && start->y == end->y)
-	// 	ft_mlx_pixel_put(&img, start->x, start->y, start->color);
-	// else if (start->x == end->x || start->y == end->y)
-	// 	straight_line(img, *start, *end);
-	// else
 	bresenham(img, *start, *end);
-}
-
-void	straight_line(t_img img, t_map_point start, t_map_point end)
-{
-	if ((int)start.x == (int)end.x)
-	{
-		if ((int)start.y > (int)end.y)
-			swap(&start, &end);
-		while ((int)start.y <= (int)end.y)
-		{
-			ft_mlx_pixel_put(&img, (int)start.x, (int)start.y, start.color);
-			start.y++;
-		}
-	}
-	else
-	{
-		if ((int)start.x > (int)end.x)
-			swap(&start, &end);
-		while ((int)start.x <= (int)end.x)
-		{
-			ft_mlx_pixel_put(&img, (int)start.x, (int)start.y, start.color);
-			start.x++;
-		}
-	}
 }
 
 void	bresenham(t_img img, t_map_point start, t_map_point end)

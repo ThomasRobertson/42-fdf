@@ -50,7 +50,6 @@ SRC_FILE=	\
 			init.c \
 			main.c \
 			math.c \
-			normalize.c \
 			parse_map.c \
 			process_map.c \
 			utils.c \

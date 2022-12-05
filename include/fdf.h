@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/05 22:35:56 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:48:58 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ t_map_point	convert_iso_point(t_map_point point, t_map_data map);
 
 //DRAW_LINE
 void		drawline(t_img img, t_map_point const *start, t_map_point const *end);
-void		straight_line(t_img img, t_map_point start, t_map_point end);
 void		bresenham(t_img img, t_map_point start, t_map_point end);
 
 // DRAW_MAP
@@ -148,18 +147,12 @@ int			ft_mlx_new_image(t_mlx mlx, t_img *img);
 // MATH
 double		convert_to_rad(double deg);
 
-// NORMALIZE
-void		normalize_z(t_map_data map);
-void		normalize_y(t_map_data map, t_bool convert_3d);
-void		normalize_x(t_map_data map, t_bool convert_3d);
-void		normalize(t_map_data map, t_bool convert_3d);
-t_map_point	normalize_point(t_map_point point, t_map_data map);
-
 // PARSE MAP
 int			parse_map(char *filename, t_map_data *map);
 
 // PROCESS MAP
 t_map_point	offset_point(t_map_point point, t_map_data map);
+t_map_point	normalize_point(t_map_point point, t_map_data map);
 
 // UTILS
 int			close_window(t_mlx *vars);
