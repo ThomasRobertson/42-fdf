@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 20:21:25 by troberts         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:37:21 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 
 	(void)ac;
 	if (!parse_map(av[1], &map))
-		return (error_args());
+		return (EXIT_FAILURE);
 	if (!init_window(&mlx))
 		return (error_init_windows(map));
 	if (!ft_mlx_new_image(mlx, &img))
