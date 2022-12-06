@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:16 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/05 22:47:45 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/06 23:14:38 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,27 @@ void	bresenham(t_img img, t_map_point start, t_map_point end)
 	int dy = -abs((int)end.y - (int)start.y);
 	int sy = (int)start.y < (int)end.y ? 1 : -1;
 	int error = dx + dy;
+	t_map_point	point;
 
+	point = start;
 	while (true)
 	{
-		ft_mlx_pixel_put(&img, (int)start.x, (int)start.y, (int)start.color);
-		if ((int)start.x == (int)end.x && (int)start.y == (int)end.y)
+		ft_mlx_pixel_put(&img, (int)point.x, (int)point.y, get_color_gradient(start, end, point));
+		if ((int)point.x == (int)end.x && (int)point.y == (int)end.y)
 			break ;
 		if ((error * 2) >= dy)
 		{
-			if ((int)start.x == (int)end.x)
+			if ((int)point.x == (int)end.x)
 				break ;
 			error = error + dy;
-			start.x = (int)start.x + sx;
+			point.x = (int)point.x + sx;
 		}
 		if ((error * 2) <= dx)
 		{
-			if ((int)start.y == (int)end.y)
+			if ((int)point.y == (int)end.y)
 				break ;
 			error = error + dx;
-			start.y = (int)start.y + sy;
+			point.y = (int)point.y + sy;
 		}
 	}
 }

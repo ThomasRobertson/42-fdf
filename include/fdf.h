@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/06 20:05:55 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/06 23:10:49 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_map_data {
 	t_min_max		x;
 	t_min_max		y;
 	t_min_max_z		z;
+	t_bool			overwrite_color;
 }					t_map_data;
 
 typedef struct s_mlx {
@@ -102,9 +103,10 @@ int			clean_window_display(t_mlx mlx, int return_code);
 void		clean_map(t_map_data *map);
 
 // COLOR
-void		fill_background(t_img img);
+void			fill_background(t_img img);
+unsigned int	get_color_gradient(t_map_point start, t_map_point end, t_map_point point);
 
-int			convert_to_argb(int t, int r, int g, int b);
+int			convert_to_argb(t_color color);
 
 int			get_a(int argb);
 int			get_r(int argb);
@@ -159,6 +161,7 @@ t_map_point	normalize_point(t_map_point point, t_map_data map);
 
 // RENDER
 void		first_render(t_map_data *map, t_img img, t_mlx mlx);
+void		render(t_map_data map, t_img img, t_mlx mlx);
 
 // UTILS
 int			close_window(t_mlx *vars);

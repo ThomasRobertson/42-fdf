@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 20:04:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/06 23:20:42 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/06 23:23:28 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,19 @@ void	fill_background(t_img img)
 	}
 }
 
-// int	get_ration(int distance, int distance_min, int distance_max)
-// {
-// 	if (distance_max == distance_min)
-// 		return (100);
-// 	return (((distance - distance_min) * 100) / ((distance_max - distance_min)
-// 			* 100))
-// }
+unsigned int	get_percent(t_map_point point, t_map_data map)
+{
+	return (100 * point.z / map.y.max);
+}
 
-// t_color	add_shade(int ratio, t_color color, int argb_target)
-// {
-// 	// wip
-// }
+unsigned int	get_color_gradient(t_map_point start, t_map_point end, \
+															t_map_point point)
+{
+	t_color	color;
+
+	color.a = 255;
+	color.r = point.z * get_r(start.color) + (point.z - 1) * get_r(end.color);
+	color.g = point.z * get_g(start.color) + (point.z - 1) * get_g(end.color);
+	color.b = point.z * get_b(start.color) + (point.z - 1) * get_b(end.color);
+	return (convert_to_argb(color));
+}
