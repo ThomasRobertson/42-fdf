@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/05 23:48:46 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:05:55 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,9 @@ int			parse_map(char *filename, t_map_data *map);
 // PROCESS MAP
 t_map_point	offset_point(t_map_point point, t_map_data map);
 t_map_point	normalize_point(t_map_point point, t_map_data map);
+
+// RENDER
+void		first_render(t_map_data *map, t_img img, t_mlx mlx);
 
 // UTILS
 int			close_window(t_mlx *vars);

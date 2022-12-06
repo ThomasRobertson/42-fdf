@@ -52,6 +52,7 @@ SRC_FILE=	\
 			math.c \
 			parse_map.c \
 			process_map.c \
+			render.c \
 			utils.c \
 			utils2.c
 

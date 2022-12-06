@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/05 23:44:52 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:14:05 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int ac, char **av)
 		return (error_init_windows(map));
 	if (!ft_mlx_new_image(mlx, &img))
 		return (error_new_image(mlx, map));
-	fill_background(img);
 	// draw_3d(map, img);
  	// unsigned int x = 0;
 	// unsigned int y = 0;
@@ -62,7 +61,6 @@ int	main(int ac, char **av)
 	// 	}
 	// 	y++;
 	// }
-	draw_3d(map, img);
 	// t_map_point a;
 	// t_map_point b;
 	// b.x = 0;
@@ -87,7 +85,7 @@ int	main(int ac, char **av)
 	// b.x = 801;
 	// b.y = 300;
 	// drawline(img, &a, &b);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img_ptr, 0, 0);
+	first_render(&map, img, mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &handle_no_event, &mlx);
 	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &mlx);
 	mlx_hook(mlx.win_ptr, KeyRelease, KeyReleaseMask, &handle_keypress, &mlx);
