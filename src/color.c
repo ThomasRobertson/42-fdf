@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 20:04:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/05 23:44:11 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/06 23:20:42 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 void	fill_background(t_img img)
 {
-	t_map_point	start;
-	t_map_point	end;
-	int			y;
+	int	x;
+	int	y;
 
 	y = 0;
-	start.x = 0;
-	end.x = WIN_W - 1;
-	start.color = DEFAULT_COLOR_BG;
-	end.color = DEFAULT_COLOR_BG;
 	while (y < WIN_H)
 	{
-		start.y = y;
-		end.y = y;
-		bresenham(img, start, end);
+		x = 0;
+		while (x < WIN_W)
+		{
+			ft_mlx_pixel_put(&img, x, y, DEFAULT_COLOR_BG);
+			x++;
+		}
 		y++;
 	}
 }
