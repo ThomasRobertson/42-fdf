@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/08 12:34:53 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:39:05 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ int	count_line(t_list *lines, int *nbr_lines)
 		while (content_ptr[size])
 			size++;
 		if (size != target_size)
+		{
+			ft_putendl_fd("Not all lines contains the same number of row.", \
+																STDERR_FILENO);
 			return (RETURN_FAILURE);
+		}
 		lines = lines->next;
 	}
 	*nbr_lines = target_size;
@@ -96,8 +100,8 @@ t_map_point	**convert_to_t_map_point(char **line, int y, unsigned int line_len)
 		row_tmp->x = x;
 		row_tmp->y = y;
 		row_tmp->z = ft_atoi(line[x]);
-		strchr_ptr = ft_strchr(line[x], ',');
-		if (strchr_ptr != NULL && (strchr_ptr + 1) != NULL)
+		strchr_ptr = ft_strstr(line[x], "0x");
+		if (strchr_ptr != NULL && strchr_ptr[2] != '\0')
 			row_tmp->color = get_valid_color(strchr_ptr);
 		else
 			row_tmp->color = DEFAULT_COLOR;
