@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/06 20:10:58 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:34:53 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_map_point	**convert_to_t_map_point(char **line, int y, unsigned int line_len)
 		row_tmp->z = ft_atoi(line[x]);
 		strchr_ptr = ft_strchr(line[x], ',');
 		if (strchr_ptr != NULL && (strchr_ptr + 1) != NULL)
-			row_tmp->color = (unsigned int)ft_atoi(strchr_ptr + 1);
+			row_tmp->color = get_valid_color(strchr_ptr);
 		else
 			row_tmp->color = DEFAULT_COLOR;
 		row_ptr[x] = row_tmp;

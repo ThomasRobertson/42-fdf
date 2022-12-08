@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/06 23:10:49 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/08 13:07:35 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,10 @@ void		clean_map(t_map_data *map);
 
 // COLOR
 void			fill_background(t_img img);
-unsigned int	get_color_gradient(t_map_point start, t_map_point end, t_map_point point);
-
-int			convert_to_argb(t_color color);
+unsigned int	get_color_gradient(t_map_point start, t_map_point end, \
+											t_map_point point, t_map_data map);
+unsigned int	get_valid_color(char *strchr_ptr);
+int				convert_to_argb(t_color color);
 
 int			get_a(int argb);
 int			get_r(int argb);
