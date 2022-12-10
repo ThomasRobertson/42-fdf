@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
-      with :
+      with:
         submodules: true
     - uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: libbsd-dev libxext-dev libx11-dev
+      with:
+        packages: libbsd-dev libxext-dev libx11-dev
     - name: Compiling using GCC
       run: make re
       env:
