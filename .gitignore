@@ -25,6 +25,7 @@ obj/
 
 # Specific files
 fdf
+fdf_linux
 
 # Specific folders
 mlx_linux
