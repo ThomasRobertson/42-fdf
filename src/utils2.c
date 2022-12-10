@@ -6,13 +6,22 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:32:20 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/27 21:05:42 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:32:47 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// int	sign(int a, int b)
-// {
-	
-// }
+void	string_upper(char *str)
+{
+	int	i;
+
+	if (str == NULL)
+		return ;
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_toupper(str[i]);
+		i++;
+	}
+}

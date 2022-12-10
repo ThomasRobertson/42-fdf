@@ -6,18 +6,18 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:16 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/08 00:01:40 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:18:03 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	drawline(t_img img, t_map_point const *start, t_map_point const *end, t_map_data map)
+void	drawline(t_img img, t_map_point const *start, t_map_point const *end)
 {
-	bresenham(img, *start, *end, map);
+	bresenham(img, *start, *end);
 }
 
-void	bresenham(t_img img, t_map_point start, t_map_point end, t_map_data map)
+void	bresenham(t_img img, t_map_point start, t_map_point end)
 {
 	int dx = abs((int)end.x - (int)start.x);
 	int sx = (int)start.x < (int)end.x ? 1 : -1;
@@ -29,7 +29,7 @@ void	bresenham(t_img img, t_map_point start, t_map_point end, t_map_data map)
 	point = start;
 	while (true)
 	{
-		ft_mlx_pixel_put(&img, (int)point.x, (int)point.y, get_color_gradient(start, end, point, map));
+		ft_mlx_pixel_put(&img, (int)point.x, (int)point.y, get_color_gradient(start, end, point));
 		if ((int)point.x == (int)end.x && (int)point.y == (int)end.y)
 			break ;
 		if ((error * 2) >= dy)
