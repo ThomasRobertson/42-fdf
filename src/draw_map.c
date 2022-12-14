@@ -6,13 +6,13 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:54:10 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/10 17:18:25 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:00:03 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_3d(t_map_data map, t_img img)
+void	draw_map(t_map_data map, t_img img)
 {
 	int				x;
 	int				y;

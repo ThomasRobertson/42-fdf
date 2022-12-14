@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/10 17:21:00 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:01:55 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ t_map_point		get_start_end_point_x(t_map_data map, t_map_point *start, \
 												int x, int y);
 t_map_point		get_start_end_point_y(t_map_data map, t_map_point *start, \
 												int x, int y);
-void			draw_3d(t_map_data map, t_img img);
+void			draw_map(t_map_data map, t_img img);
 void			process_start_and_point(t_map_data map, t_map_point *start, \
 															t_map_point *end);
 
