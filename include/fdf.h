@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/14 17:01:55 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/17 22:12:01 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define RIGHT_MARGIN 0.10
 # define TOP_MARGIN 0.10
 # define BOTTOM_MARGIN 0.10
+# define HORIZONTAL_INCREMENT 0.05
+# define LATERAL_INCREMENT 0.05
 
 # define Z_RESOLUTION 2
 # define ANGLE 30
@@ -99,6 +101,12 @@ typedef struct s_img {
 	int		endian;
 }			t_img;
 
+typedef struct s_hook_bundle {
+	t_map_data	*map;
+	t_mlx		*mlx;
+	t_img		*img;
+}				t_hook_bundle;
+
 typedef struct s_color {
 	unsigned char	a;
 	unsigned char	r;
@@ -155,7 +163,9 @@ void			find_max_min(t_map_data *map);
 
 //HANDLE
 int				handle_no_event(void *data);
-int				handle_keypress(int keysym, t_mlx *mlx);
+int				handle_keypress(int keysym, t_hook_bundle *hook);
+int				handle_move_map(int keysum, t_hook_bundle *hook);
+int				handle_zoom_map(int keysum, t_hook_bundle *hook);
 
 // INIT
 int				init_window(t_mlx *mlx);

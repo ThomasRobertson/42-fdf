@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/06 20:14:05 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/17 22:20:36 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	main(int ac, char **av)
 {
-	t_mlx		mlx;
-	t_img		img;
-	t_map_data	map;
+	t_mlx			mlx;
+	t_img			img;
+	t_map_data		map;
+	t_hook_bundle	hook_bundle;
 
 	(void)ac;
 	if (!parse_map(av[1], &map))
@@ -25,70 +26,14 @@ int	main(int ac, char **av)
 		return (error_init_windows(map));
 	if (!ft_mlx_new_image(mlx, &img))
 		return (error_new_image(mlx, map));
-	// draw_3d(map, img);
- 	// unsigned int x = 0;
-	// unsigned int y = 0;
-	// t_map_point *point;
-	// while (return_ptr_point(1, y, map))
-	// {
-	// 	point = return_ptr_point(x, y, map);
-	// 	while (point)
-	// 	{
-	// 		int x2 = point->x;
-	// 		int y2 = point->y;
-	// 		int z2 = point->z;
-	// 		printf("x: %i y: %i z: %i\n", x2, y2, z2);
-	// 		x++;
-	// 		point = return_ptr_point(x, y, map);
-	// 	}
-	// 	y++;
-	// }
-	// x = 0;
-	// y = 0;
-	// // normalize_z(map);
-	// // offset_coord(map);
-	// while (return_ptr_point(1, y, map))
-	// {
-	// 	point = return_ptr_point(x, y, map);
-	// 	while (point)
-	// 	{
-	// 		int x2 = point->x;
-	// 		int y2 = point->y;
-	// 		int z2 = point->z;
-	// 		printf("x: %i y: %i z: %i\n", x2, y2, z2);
-	// 		x++;
-	// 		point = return_ptr_point(x, y, map);
-	// 	}
-	// 	y++;
-	// }
-	// t_map_point a;
-	// t_map_point b;
-	// b.x = 0;
-	// b.y = 0;
-	// b.color = 0x00FF0000;
-	// a.x = 800;
-	// a.y = 800;
-	// a.color = 0x00FF0000;
-	// drawline(img, &a, &b);
-	// a.x = 800;
-	// a.y = 0;
-	// b.x = 0;
-	// b.y = 801;
-	// drawline(img, &a, &b);
-	// a.x = 300;
-	// a.y = 0;
-	// b.x = 300;
-	// b.y = 801;
-	// drawline(img, &a, &b);
-	// a.x = 0;
-	// a.y = 300;
-	// b.x = 801;
-	// b.y = 300;
-	// drawline(img, &a, &b);
+	hook_bundle.img = &img;
+	hook_bundle.map = &map;
+	hook_bundle.mlx = &mlx;
 	first_render(&map, img, mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &handle_no_event, &mlx);
-	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &mlx);
-	mlx_hook(mlx.win_ptr, KeyRelease, KeyReleaseMask, &handle_keypress, &mlx);
+	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, \
+																&hook_bundle);
+	mlx_do_key_autorepeatoff(mlx.mlx_ptr);
 	mlx_loop(mlx.mlx_ptr);
 	mlx_destroy_image(mlx.mlx_ptr, img.img_ptr);
 	clean_map(&map);
