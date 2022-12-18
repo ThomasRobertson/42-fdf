@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:38:29 by troberts          #+#    #+#             */
-/*   Updated: 2022/10/07 15:55:39 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/18 02:30:32 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	init_window(t_mlx *mlx)
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 		return (RETURN_FAILURE);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_W, WIN_H, "Hello world!");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_W, WIN_H, "FdF - troberts");
 	if (mlx->win_ptr == NULL)
 	{
 		mlx_destroy_display(mlx->mlx_ptr);
