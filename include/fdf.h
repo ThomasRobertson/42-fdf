@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/17 22:12:01 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:05:09 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 # define M_PI 3.14159265358979323846
 
-# define WIN_W 1400
-# define WIN_H 800
+# define WIN_W 900
+# define WIN_H 900
 
 # define LEFT_MARGIN 0.10
 # define RIGHT_MARGIN 0.10
@@ -54,8 +54,8 @@ typedef struct s_margin {
 
 typedef enum e_proj
 {
-	none = 0,
-	iso = 1
+	iso = 1,
+	para = 2
 }	t_proj;
 
 typedef struct s_map_point {
@@ -166,7 +166,7 @@ int				handle_no_event(void *data);
 int				handle_keypress(int keysym, t_hook_bundle *hook);
 int				handle_move_map(int keysum, t_hook_bundle *hook);
 int				handle_zoom_map(int keysum, t_hook_bundle *hook);
-
+int				handle_change_projection(t_hook_bundle *hook);
 // INIT
 int				init_window(t_mlx *mlx);
 int				ft_mlx_new_image(t_mlx mlx, t_img *img);

@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:54:10 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/14 17:00:03 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/18 17:48:35 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	draw_map(t_map_data map, t_img img)
 void	process_start_and_point(t_map_data map, t_map_point *start, \
 															t_map_point *end)
 {
-	*start = convert_iso_point(*start, map);
+	*start = convert_point(*start, map);
 	*start = normalize_point(*start, map);
 	*start = offset_point(*start, map);
-	*end = convert_iso_point(*end, map);
+	*end = convert_point(*end, map);
 	*end = normalize_point(*end, map);
 	*end = offset_point(*end, map);
 }

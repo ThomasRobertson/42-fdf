@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:53:09 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/17 22:20:19 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:03:42 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ int	handle_keypress(int keysum, t_hook_bundle *hook)
 	else if (keysum == XK_i || keysum == XK_I || keysum == XK_o || \
 																keysum == XK_O)
 		handle_zoom_map(keysum, hook);
+	else if (keysum == XK_p || keysum == XK_P)
+		handle_change_projection(hook);
+	return (RETURN_SUCCESS);
+}
+
+int	handle_change_projection(t_hook_bundle *hook)
+{
+	if (hook->map->proj == iso)
+		hook->map->proj = para;
+	else
+		hook->map->proj = iso;
+	find_max_min(hook->map);
+	render(*(hook->map), *(hook->img), *(hook->mlx));
 	return (RETURN_SUCCESS);
 }
 
