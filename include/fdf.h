@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/05 00:32:49 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/05 00:36:25 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ typedef enum e_proj
 {
 	none = 0,
 	iso = 1,
-	para = 2
+	para = 2,
+	para2 = 3
 }	t_proj;
 
 typedef struct s_map_point {

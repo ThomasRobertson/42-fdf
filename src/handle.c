@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:53:09 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/18 21:03:42 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/05 00:41:33 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	handle_keypress(int keysum, t_hook_bundle *hook)
 
 int	handle_change_projection(t_hook_bundle *hook)
 {
-	if (hook->map->proj == iso)
-		hook->map->proj = para;
+	if (hook->map->proj == para2)
+		hook->map->proj = none;
 	else
-		hook->map->proj = iso;
+		hook->map->proj++;
 	find_max_min(hook->map);
 	render(*(hook->map), *(hook->img), *(hook->mlx));
 	return (RETURN_SUCCESS);
