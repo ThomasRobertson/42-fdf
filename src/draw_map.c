@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:54:10 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/18 17:48:35 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:28:01 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void	draw_map(t_map_data map, t_img img)
 	while (y < map.nbr_row)
 	{
 		x = 0;
-		while (x + 1 < map.nbr_line)
+		while (x < map.nbr_line)
 		{
 			end = get_start_end_point_x(map, &start, x, y);
-			drawline(img, &start, &end);
+			drawline(img, &start, &end, map);
 			end = get_start_end_point_y(map, &start, x, y);
-			drawline(img, &start, &end);
+			drawline(img, &start, &end, map);
 			x++;
 		}
 		y++;
 		end = get_start_end_point_y(map, &start, x, y);
-		drawline(img, &start, &end);
+		drawline(img, &start, &end, map);
 	}
 }
 

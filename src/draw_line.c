@@ -6,18 +6,22 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:16 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/10 17:18:03 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/23 21:54:52 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	drawline(t_img img, t_map_point const *start, t_map_point const *end)
+void	drawline(t_img img, t_map_point const *start, t_map_point const *end, t_map_data map)
 {
-	bresenham(img, *start, *end);
+	int	line_len;
+
+	(void)map;
+	line_len = bresenham_counter(*start, *end);
+	bresenham_fixed_color(img, *start, *end, line_len);
 }
 
-void	bresenham(t_img img, t_map_point start, t_map_point end)
+void	bresenham_real_color(t_img img, t_map_point start, t_map_point end)
 {
 	int dx = abs((int)end.x - (int)start.x);
 	int sx = (int)start.x < (int)end.x ? 1 : -1;
@@ -49,6 +53,41 @@ void	bresenham(t_img img, t_map_point start, t_map_point end)
 	}
 }
 
+void	bresenham_fixed_color(t_img img, t_map_point start, t_map_point end, int line_len)
+{
+	int dx = abs((int)end.x - (int)start.x);
+	int sx = (int)start.x < (int)end.x ? 1 : -1;
+	int dy = -abs((int)end.y - (int)start.y);
+	int sy = (int)start.y < (int)end.y ? 1 : -1;
+	int error = dx + dy;
+	t_map_point	point;
+	int	i;
+
+	i = 0;
+	point = start;
+	while (true)
+	{
+		ft_mlx_pixel_put(&img, (int)point.x, (int)point.y, get_fixed_color_gradient(line_len, i, start, end));
+		if ((int)point.x == (int)end.x && (int)point.y == (int)end.y)
+			break ;
+		if ((error * 2) >= dy)
+		{
+			if ((int)point.x == (int)end.x)
+				break ;
+			error = error + dy;
+			point.x = (int)point.x + sx;
+		}
+		if ((error * 2) <= dx)
+		{
+			if ((int)point.y == (int)end.y)
+				break ;
+			error = error + dx;
+			point.y = (int)point.y + sy;
+		}
+		i++;
+	}
+}
+
 void	ft_mlx_pixel_put(t_img *img, int x, int y, unsigned int color)
 {
 	char	*pixel;
@@ -68,4 +107,39 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, unsigned int color)
 			*pixel++ = (color >> (img->bits_per_pixel - 8 - i)) & 0xFF;
 		i -= 8;
 	}
+}
+
+int	bresenham_counter(t_map_point start, t_map_point end)
+{
+	int dx = abs((int)end.x - (int)start.x);
+	int sx = (int)start.x < (int)end.x ? 1 : -1;
+	int dy = -abs((int)end.y - (int)start.y);
+	int sy = (int)start.y < (int)end.y ? 1 : -1;
+	int error = dx + dy;
+	t_map_point	point;
+	int counter;
+
+	counter = 0;
+	point = start;
+	while (true)
+	{
+		counter++;
+		if ((int)point.x == (int)end.x && (int)point.y == (int)end.y)
+			break ;
+		if ((error * 2) >= dy)
+		{
+			if ((int)point.x == (int)end.x)
+				break ;
+			error = error + dy;
+			point.x = (int)point.x + sx;
+		}
+		if ((error * 2) <= dx)
+		{
+			if ((int)point.y == (int)end.y)
+				break ;
+			error = error + dx;
+			point.y = (int)point.y + sy;
+		}
+	}
+	return (counter);
 }

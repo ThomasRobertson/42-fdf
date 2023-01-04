@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:59:32 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/18 17:50:10 by troberts         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:11:08 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ t_map_point	convert_para_point(t_map_point point, t_map_data map)
 	(void)map;
 	previous_x = point.x;
 	previous_y = point.y;
-	point.x = previous_x - point.z * cos(convert_to_rad(60));
-	point.y = previous_y - point.z + sin(convert_to_rad(60));
+	point.x = previous_x - point.z * cos(convert_to_rad(45));
+	point.y = previous_y - point.z + sin(convert_to_rad(45));
+	// point.x = previous_y + cos(convert_to_rad(60)) * previous_x;
+	// point.y = -point.z + sin(convert_to_rad(60)) * previous_x;
 	return (point);
 }
 
