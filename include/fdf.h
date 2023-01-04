@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/23 21:47:58 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/05 00:32:49 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_map_data {
 	t_min_max		x;
 	t_min_max		y;
 	t_min_max_z		z;
-	t_bool			overwrite_color;
 	t_margin		margin;
 }					t_map_data;
 
@@ -128,9 +127,6 @@ unsigned int	get_color_gradient(t_map_point start, t_map_point end, \
 															t_map_point point);
 unsigned int	get_valid_color(char *strchr_ptr);
 int				convert_to_argb(t_color color);
-unsigned int	get_fixed_color_gradient(int line_len, int i, t_map_point start, t_map_point end);
-unsigned int	get_color(t_map_point start, t_map_point end, \
-											t_map_point point, t_map_data map);
 
 // COLOR RGBA
 int				get_a(int argb);
@@ -143,16 +139,10 @@ t_map_point		convert_point(t_map_point point, t_map_data map);
 t_map_point		convert_iso_point(t_map_point point, t_map_data map);
 
 //DRAW_LINE
-void			drawline(t_img img, t_map_point const *start, \
-									t_map_point const *end, t_map_data map);
-void			bresenham_fixed_color(t_img img, t_map_point start, \
-												t_map_point end, int line_len);
-void			bresenham_real_color(t_img img, t_map_point start, \
-															t_map_point end);
-int				bresenham_counter(t_map_point start, t_map_point end);
+void			drawline(t_img img, t_map_point start, t_map_point end);
+void			ft_mlx_pixel_put(t_img *data, int x, int y, unsigned int color);
 
 // DRAW_MAP
-void			ft_mlx_pixel_put(t_img *data, int x, int y, unsigned int color);
 t_map_point		get_start_end_point_x(t_map_data map, t_map_point *start, \
 												int x, int y);
 t_map_point		get_start_end_point_y(t_map_data map, t_map_point *start, \
