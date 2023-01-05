@@ -39,7 +39,6 @@ DEP_DIR= dep/
 SRC_FILE=	\
 			clean.c \
 			color_rgba.c \
-			color_struct.c \
 			color.c \
 			convert_3d.c \
 			draw_line.c \
@@ -53,6 +52,7 @@ SRC_FILE=	\
 			parse_map.c \
 			process_map.c \
 			render.c \
+			rotate.c \
 			utils.c \
 			utils2.c
 
