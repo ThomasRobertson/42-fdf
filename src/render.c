@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:55:14 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/05 00:31:17 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/05 23:26:52 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	first_render(t_map_data *map, t_img img, t_mlx mlx)
 	map->margin.top = TOP_MARGIN;
 	map->margin.right = RIGHT_MARGIN;
 	map->margin.left = LEFT_MARGIN;
+	map->rotate_value.x = DEFAULT_ROTATE;
+	map->rotate_value.y = DEFAULT_ROTATE;
+	map->rotate_value.z = DEFAULT_ROTATE;
 	find_max_min(map);
 	fill_background(img);
 	draw_map(*map, img);

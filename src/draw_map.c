@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:54:10 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/05 00:31:04 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/10 23:06:26 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ void	draw_map(t_map_data map, t_img img)
 	}
 }
 
-void	process_start_and_point(t_map_data map, t_map_point *start, \
-															t_map_point *end)
+t_map_point	process_point(t_map_data map, t_map_point point)
 {
-	*start = convert_point(*start, map);
-	*start = normalize_point(*start, map);
-	*start = offset_point(*start, map);
-	*end = convert_point(*end, map);
-	*end = normalize_point(*end, map);
-	*end = offset_point(*end, map);
+	point = rotate_point(point, map);
+	point = convert_point(point, map);
+	point = normalize_point(point, map);
+	point = offset_point(point, map);
+	return (point);
 }
 
 t_map_point	get_start_end_point_y(t_map_data map, t_map_point *start, \
@@ -55,7 +53,8 @@ t_map_point	get_start_end_point_y(t_map_data map, t_map_point *start, \
 
 	*start = return_point(x, y, map);
 	end = return_point(x, y + 1, map);
-	process_start_and_point(map, start, &end);
+	*start = process_point(map, *start);
+	end = process_point(map, end);
 	return (end);
 }
 
@@ -66,6 +65,7 @@ t_map_point	get_start_end_point_x(t_map_data map, t_map_point *start, \
 
 	*start = return_point(x, y, map);
 	end = return_point(x + 1, y, map);
-	process_start_and_point(map, start, &end);
+	*start = process_point(map, *start);
+	end = process_point(map, end);
 	return (end);
 }

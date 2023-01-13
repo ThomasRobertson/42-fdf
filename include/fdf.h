@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/05 00:36:25 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:40:52 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define LOW_COLOR 0xFF28243C
 # define DEFAULT_PROJ 1
 # define TRANSPARENCY 255
+# define DEFAULT_ROTATE 0
 
 typedef struct s_margin {
 	double	left;
@@ -65,7 +66,8 @@ typedef enum e_proj
 typedef struct s_map_point {
 	double			x;
 	double			y;
-	int				z;
+	double			y_no_rotation;
+	double			z;
 	unsigned int	color;
 }					t_map_point;
 
@@ -74,20 +76,22 @@ typedef struct s_min_max {
 	double	max;
 }			t_min_max;
 
-typedef struct s_min_max_z {
-	int	min;
-	int	max;
-}		t_min_max_z;
+typedef struct s_rotate {
+	double	x;
+	double	y;
+	double	z;
+}		t_rotate;
 
 typedef struct s_map_data {
 	t_map_point		***map;
 	int				nbr_line;
 	int				nbr_row;
 	double			angle;
+	t_rotate		rotate_value;
 	t_proj			proj;
 	t_min_max		x;
 	t_min_max		y;
-	t_min_max_z		z;
+	t_min_max		z;
 	t_margin		margin;
 }					t_map_data;
 
@@ -137,7 +141,6 @@ int				get_b(int argb);
 
 // CONVERT 3D
 t_map_point		convert_point(t_map_point point, t_map_data map);
-t_map_point		convert_iso_point(t_map_point point, t_map_data map);
 
 //DRAW_LINE
 void			drawline(t_img img, t_map_point start, t_map_point end);
@@ -149,8 +152,7 @@ t_map_point		get_start_end_point_x(t_map_data map, t_map_point *start, \
 t_map_point		get_start_end_point_y(t_map_data map, t_map_point *start, \
 												int x, int y);
 void			draw_map(t_map_data map, t_img img);
-void			process_start_and_point(t_map_data map, t_map_point *start, \
-															t_map_point *end);
+t_map_point		process_point(t_map_data map, t_map_point point);
 
 // ERROR MAIN
 int				error_args(void);
@@ -169,6 +171,8 @@ int				handle_keypress(int keysym, t_hook_bundle *hook);
 int				handle_move_map(int keysum, t_hook_bundle *hook);
 int				handle_zoom_map(int keysum, t_hook_bundle *hook);
 int				handle_change_projection(t_hook_bundle *hook);
+int				handle_rotate_map(int keysum, t_hook_bundle *hook);
+int				handle_reset(t_hook_bundle *hook);
 
 // INIT
 int				init_window(t_mlx *mlx);
@@ -187,6 +191,12 @@ t_map_point		normalize_point(t_map_point point, t_map_data map);
 // RENDER
 void			first_render(t_map_data *map, t_img img, t_mlx mlx);
 void			render(t_map_data map, t_img img, t_mlx mlx);
+
+// ROTATE
+t_map_point		rotate_point(t_map_point point, t_map_data map);
+t_map_point		rotate_x(t_map_point point, t_map_data map);
+t_map_point		rotate_y(t_map_point point, t_map_data map);
+t_map_point		rotate_z(t_map_point point, t_map_data map);
 
 // UTILS
 int				close_window(t_mlx *vars);
