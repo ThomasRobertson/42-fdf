@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 01:26:58 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/20 16:19:34 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:09:09 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_map_point	return_point(int x, int y, t_map_data map)
 	if (y < 0)
 		y = 0;
 	if (x >= map.nbr_line)
-		x = map.nbr_row - 1;
+		x = map.nbr_line - 1;
 	if (x < 0)
 		x = 0;
 	map_ptr = map.map;
