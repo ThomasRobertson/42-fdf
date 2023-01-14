@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:16 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 01:50:09 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 02:36:29 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	drawline(t_img img, t_map_point start, t_map_point end)
 
 	if (start.y < 0 && end.y < 0)
 		return ;
-	if (start.y > WIN_W && end.y > WIN_W)
+	if (start.y > WIN_H && end.y > WIN_H)
 		return ;
 	if (start.x < 0 && end.x < 0)
 		return ;
-	if (start.x > WIN_H && end.x > WIN_H)
+	if (start.x > WIN_W && end.x > WIN_W)
 		return ;
 	point = start;
 	while (true)
