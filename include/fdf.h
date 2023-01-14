@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 01:59:31 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 03:23:31 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../mlx_linux/mlx.h"
 # include "typedef_fdf.h"
 # include "../libft/include/libft.h"
+# include "solarized_color.h"
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -28,7 +29,7 @@
 
 # define M_PI 3.14159265358979323846
 
-# define WIN_W 900
+# define WIN_W 1500
 # define WIN_H 900
 
 # define LEFT_MARGIN 0.10
@@ -38,12 +39,15 @@
 # define HORIZONTAL_INCREMENT 0.05
 # define LATERAL_INCREMENT 0.05
 
-# define Z_RESOLUTION 2
-# define DEFAULT_COLOR 0xFF93A1A1
-# define DEFAULT_COLOR_BG 0xFF073642
+# define Z_RESOLUTION DBL_MAX
+# define DEFAULT_COLOR SOL_BASE0
+# define DEFAULT_COLOR_BG SOL_BASE02
 # define DEFAULT_PROJ 1
 # define TRANSPARENCY 255
 # define DEFAULT_ROTATE 0
+
+# define MENU_W 0.10
+# define DEFAULT_COLOR_MENU SOL_BASE03
 
 typedef struct s_margin {
 	double	left;
@@ -123,7 +127,8 @@ int				clean_window_display(t_mlx mlx, int return_code);
 void			clean_map(t_map_data *map);
 
 // COLOR
-void			fill_background(t_img img);
+void			fill_background(t_img img, int max_x, int max_y, \
+															unsigned int color);
 unsigned int	get_color_gradient(t_map_point start, t_map_point end, \
 															t_map_point point);
 unsigned int	get_valid_color(char *strchr_ptr);
@@ -176,6 +181,9 @@ int				ft_mlx_new_image(t_mlx mlx, t_img *img);
 
 // MATH
 double			convert_to_rad(double deg);
+
+// MENU
+void			draw_menu(t_mlx mlx);
 
 // PARSE MAP
 int				parse_map(char *filename, t_map_data *map);

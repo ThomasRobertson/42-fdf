@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:55:14 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 01:59:37 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 14:36:54 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,19 @@ void	first_render(t_map_data *map, t_img img, t_mlx *mlx)
 	map->rotate_value.y = DEFAULT_ROTATE;
 	map->rotate_value.z = DEFAULT_ROTATE;
 	find_max_min(map);
-	fill_background(img);
+	fill_background(img, WIN_W, WIN_H, DEFAULT_COLOR_BG);
 	draw_map(*map, img);
 	mlx_do_key_autorepeaton(mlx->mlx_ptr);
+	fill_background(img, WIN_W * (double)MENU_W, WIN_H, DEFAULT_COLOR_MENU);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img.img_ptr, 0, 0);
+	draw_menu(*mlx);
 }
 
 void	render(t_map_data map, t_img img, t_mlx mlx)
 {
-	fill_background(img);
+	fill_background(img, WIN_W, WIN_H, DEFAULT_COLOR_BG);
 	draw_map(map, img);
+	fill_background(img, WIN_W * (double)MENU_W, WIN_H, DEFAULT_COLOR_MENU);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img_ptr, 0, 0);
+	draw_menu(mlx);
 }

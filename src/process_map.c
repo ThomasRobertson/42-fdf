@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 21:21:31 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/14 17:03:57 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 02:20:16 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_map_point	offset_point(t_map_point point, t_map_data map)
 {
 	(void)map;
-	point.x = (WIN_W * map.margin.left) + ((double)point.x / \
+	point.x = (WIN_W * (map.margin.left + MENU_W)) + ((double)point.x / \
 		((double)WIN_W) * (WIN_W - (WIN_W * \
-			(map.margin.right + map.margin.left))));
+			(map.margin.right + map.margin.left + MENU_W))));
 	point.y = (WIN_H * map.margin.top) + ((double)point.y / \
 		((double)WIN_H) * (WIN_H - (WIN_H * \
 			(map.margin.bottom + map.margin.top))));
