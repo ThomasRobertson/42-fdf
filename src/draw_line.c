@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:16 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/11 01:06:17 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 01:50:09 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ void	drawline(t_img img, t_map_point start, t_map_point end)
 	int error = dx + dy;
 	t_map_point	point;
 
-	// if (start.x < 0 && start.y < 0 && end.x < 0 && end.y < 0)
-	// 	return ;
-	// if (start.x > WIN_W - 1 && start.y > WIN_H - 1 && \
-	// 	end.x > WIN_W - 1 && end.y > WIN_H - 1) // A confirmer formule
-	// 	return ;
+	if (start.y < 0 && end.y < 0)
+		return ;
+	if (start.y > WIN_W && end.y > WIN_W)
+		return ;
+	if (start.x < 0 && end.x < 0)
+		return ;
+	if (start.x > WIN_H && end.x > WIN_H)
+		return ;
 	point = start;
 	while (true)
 	{
