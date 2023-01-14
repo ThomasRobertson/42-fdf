@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:53:09 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 00:34:26 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:34:31 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,10 @@ int	handle_reset(t_hook_bundle *hook)
 	hook->map->proj = DEFAULT_PROJ;
 	render(*(hook->map), *(hook->img), *(hook->mlx));
 	return (RETURN_SUCCESS);
+}
+
+int	handle_close(t_hook_bundle *hook)
+{
+	clean_exit(*(hook->mlx), *(hook->img), hook->map);
+	exit(EXIT_SUCCESS);
 }

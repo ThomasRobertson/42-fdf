@@ -46,9 +46,11 @@ SRC_FILE=	\
 			error_main.c \
 			find_min_max.c \
 			handle.c \
+			hook.c \
 			init.c \
 			main.c \
 			math.c \
+			menu.c \
 			parse_map.c \
 			process_map.c \
 			render.c \

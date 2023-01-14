@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 03:23:31 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:28:15 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_color {
 int				clean_display(t_mlx mlx, int return_code);
 int				clean_window_display(t_mlx mlx, int return_code);
 void			clean_map(t_map_data *map);
+int				clean_exit(t_mlx mlx, t_img img, t_map_data *map);
 
 // COLOR
 void			fill_background(t_img img, int max_x, int max_y, \
@@ -174,6 +175,11 @@ int				handle_zoom_map(int keysum, t_hook_bundle *hook);
 int				handle_change_projection(t_hook_bundle *hook);
 int				handle_rotate_map(int keysum, t_hook_bundle *hook);
 int				handle_reset(t_hook_bundle *hook);
+int				handle_close(t_hook_bundle *hook);
+
+// HOOK
+void			set_up_look_and_hook(t_mlx *mlx, t_img *img, t_map_data *map, \
+														t_hook_bundle *hook);
 
 // INIT
 int				init_window(t_mlx *mlx);

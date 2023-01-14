@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:42:31 by troberts          #+#    #+#             */
-/*   Updated: 2022/11/28 19:22:22 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:18:50 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,12 @@ void	clean_map(t_map_data *map)
 		i++;
 	}
 	free(map_ptr);
+}
+
+int	clean_exit(t_mlx mlx, t_img img, t_map_data *map)
+{
+	mlx_destroy_image(mlx.mlx_ptr, img.img_ptr);
+	clean_map(map);
+	clean_display(mlx, EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
