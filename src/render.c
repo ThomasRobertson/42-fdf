@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 19:55:14 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 01:54:34 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 01:59:37 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	first_render(t_map_data *map, t_img img, t_mlx *mlx)
 {
-	map->angle = ANGLE;
 	map->proj = DEFAULT_PROJ;
 	map->margin.bottom = BOTTOM_MARGIN;
 	map->margin.top = TOP_MARGIN;

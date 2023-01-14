@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 01:54:08 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 01:59:31 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@
 # define LATERAL_INCREMENT 0.05
 
 # define Z_RESOLUTION 2
-# define ANGLE 30
 # define DEFAULT_COLOR 0xFF93A1A1
 # define DEFAULT_COLOR_BG 0xFF073642
-# define HIGH_COLOR 0xFFF9D999
-# define LOW_COLOR 0xFF28243C
 # define DEFAULT_PROJ 1
 # define TRANSPARENCY 255
 # define DEFAULT_ROTATE 0
@@ -86,7 +83,6 @@ typedef struct s_map_data {
 	t_map_point		***map;
 	int				nbr_line;
 	int				nbr_row;
-	double			angle;
 	t_rotate		rotate_value;
 	t_proj			proj;
 	t_min_max		x;
