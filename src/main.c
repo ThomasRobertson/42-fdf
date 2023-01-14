@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/17 22:20:36 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 01:55:06 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ int	main(int ac, char **av)
 	hook_bundle.img = &img;
 	hook_bundle.map = &map;
 	hook_bundle.mlx = &mlx;
-	first_render(&map, img, mlx);
+	first_render(&map, img, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &handle_no_event, &mlx);
 	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, \
 																&hook_bundle);
-	mlx_do_key_autorepeatoff(mlx.mlx_ptr);
 	mlx_loop(mlx.mlx_ptr);
 	mlx_destroy_image(mlx.mlx_ptr, img.img_ptr);
 	clean_map(&map);
