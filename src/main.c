@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 01:55:06 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:17:25 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int ac, char **av)
 	t_map_data		map;
 	t_hook_bundle	hook_bundle;
 
-	(void)ac;
+	if (ac != 2)
+		return (error_args);
 	if (!parse_map(av[1], &map))
 		return (EXIT_FAILURE);
 	if (!init_window(&mlx))
