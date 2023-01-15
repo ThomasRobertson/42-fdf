@@ -16,7 +16,7 @@
 
 NAME= fdf
 
-CC= clang
+# CC= clang
 CFLAGS= -Wall -Werror -Wextra -g3 $(INCLUDE) #-fsanitize=address
 LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm #-fsanitize=address
 DEPFLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
@@ -72,7 +72,7 @@ DEP=		$(addprefix $(DEP_DIR), $(DEP_FILE))
 # **************************************************************************** #
 
 #                 # <-- start here         | <-- middle             # <-- stop here
-HEADER_NAME 	= +                      pipex                      #
+HEADER_NAME 	= +                       FdF                       #
 
 COLOR_RED		= \033[0;31m
 COLOR_GREEN		= \033[0;32m
