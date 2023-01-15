@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:53:09 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 17:30:59 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:31:33 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	handle_rotate_map(int keysum, t_hook_bundle *hook)
 		hook->map->rotate_value.y -= 0.05;
 	else if (keysum == XK_d || keysum == XK_D)
 		hook->map->rotate_value.y += 0.05;
-	else if (keysum == XK_q| keysum == XK_Q)
+	else if (keysum == XK_q || keysum == XK_Q)
 		hook->map->rotate_value.z += 0.05;
 	else if (keysum == XK_e || keysum == XK_E)
 		hook->map->rotate_value.z -= 0.05;
