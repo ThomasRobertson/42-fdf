@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 17:25:16 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:26:17 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	count_line(t_list *lines, int *nbr_lines)
 
 	target_size = 0;
 	content_ptr = lines->content;
-	while (content_ptr[target_size] && ft_strcmp(content_ptr[target_size], "\n") != 0)
+	while (content_ptr[target_size] && \
+								ft_strcmp(content_ptr[target_size], "\n") != 0)
 		target_size++;
 	while (lines)
 	{
