@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:32:20 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 05:36:15 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:21:41 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	fill_map_point(int x, int y, char *line, t_map_point **row_ptr)
 	row_tmp->x = x;
 	row_tmp->y = y;
 	row_tmp->z = ft_atoi(line);
+	if (!USE_COLOR)
+	{
+		row_tmp->color = DEFAULT_COLOR;
+		return ;
+	}
 	strchr_ptr = ft_strstr(line, "0x");
 	if (strchr_ptr != NULL && strchr_ptr[2] != '\0')
 		row_tmp->color = get_valid_color(strchr_ptr);
