@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:45:27 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/13 14:28:03 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:15:26 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_map_point	rotate_point(t_map_point point, t_map_data map)
 	t_map_point	no_rotation;
 
 	no_rotation = convert_point(point, map);
-	point.y_no_rotation = no_rotation.y;  
+	point.y_no_rotation = no_rotation.y;
 	if (map.proj == none)
 		return (point);
 	point = rotate_x(point, map);

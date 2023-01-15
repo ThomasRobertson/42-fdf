@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:32:20 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/10 15:32:47 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:36:15 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,26 @@ void	string_upper(char *str)
 		str[i] = ft_toupper(str[i]);
 		i++;
 	}
+}
+
+int	open_fd(char *filename, int *fd)
+{
+	*fd = open(filename, O_RDONLY);
+	return (*fd);
+}
+
+void	fill_map_point(int x, int y, char *line, t_map_point **row_ptr)
+{
+	t_map_point	*row_tmp;
+	char		*strchr_ptr;
+
+	row_tmp = *row_ptr;
+	row_tmp->x = x;
+	row_tmp->y = y;
+	row_tmp->z = ft_atoi(line);
+	strchr_ptr = ft_strstr(line, "0x");
+	if (strchr_ptr != NULL && strchr_ptr[2] != '\0')
+		row_tmp->color = get_valid_color(strchr_ptr);
+	else
+		row_tmp->color = DEFAULT_COLOR;
 }

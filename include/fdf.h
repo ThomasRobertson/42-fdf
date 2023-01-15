@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 04:30:17 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:36:05 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ int				parse_map(char *filename, t_map_data *map);
 // PARSE MAP CLEAN
 t_map_point		**free_row_ptr(t_map_point **row_ptr, int x);
 int				free_map_ptr(t_map_point ***map_ptr, int i, int nbr_line);
+int				free_get_lines(void *ptr, t_list **lines);
 
 // PROCESS MAP
 t_map_point		offset_point(t_map_point point, t_map_data map);
@@ -222,5 +223,7 @@ void			swap(t_map_point *a, t_map_point *b);
 
 // UTILS2
 void			string_upper(char *str);
+int				open_fd(char *filename, int *fd);
+void			fill_map_point(int x, int y, char *line, t_map_point **row_ptr);
 
 #endif

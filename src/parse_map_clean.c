@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 03:19:51 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 04:53:53 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:24:51 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,11 @@ int	free_map_ptr(t_map_point ***map_ptr, int i, int nbr_line)
 	}
 	free(map_ptr);
 	return (RETURN_FAILURE);
+}
+
+int	free_get_lines(void *ptr, t_list **lines)
+{
+	free(ptr);
+	ft_lstclear(lines, wrapper_lstclear);
+	return (ft_error_return(STDOUT_FILENO, NULL, RETURN_FAILURE));
 }

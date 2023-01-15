@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 04:45:03 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 05:35:53 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	get_lines(char *filename, t_list **lines)
 	char	*line_gnl;
 	int		fd;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (open_fd(filename, &fd) == -1)
 		ft_error_return(STDERR_FILENO, "get_lines: ", RETURN_FAILURE);
 	while (true)
 	{
@@ -28,19 +27,11 @@ int	get_lines(char *filename, t_list **lines)
 			break ;
 		line_tmp = malloc(sizeof(*line_tmp));
 		if (line_tmp == NULL)
-		{
-			free(line_gnl);
-			ft_lstclear(lines, wrapper_lstclear);
-			return (ft_error_return(STDOUT_FILENO, NULL, RETURN_FAILURE));
-		}
+			return (free_get_lines(line_gnl, lines));
 		line_tmp->content = ft_split(line_gnl, ' ');
 		free(line_gnl);
 		if (line_tmp->content == NULL)
-		{
-			free(line_tmp);
-			ft_lstclear(lines, wrapper_lstclear);
-			return (ft_error_return(STDOUT_FILENO, NULL, RETURN_FAILURE));
-		}
+			return (free_get_lines(line_tmp, lines));
 		line_tmp->next = NULL;
 		ft_lstadd_back(lines, line_tmp);
 	}
@@ -81,7 +72,6 @@ int	count_line(t_list *lines, int *nbr_lines)
 t_map_point	**convert_to_t_map_point(char **line, int y, unsigned int line_len)
 {
 	int			x;
-	char		*strchr_ptr;
 	t_map_point	*row_tmp;
 	t_map_point	**row_ptr;
 
@@ -95,14 +85,7 @@ t_map_point	**convert_to_t_map_point(char **line, int y, unsigned int line_len)
 		row_tmp = malloc(sizeof(*row_tmp));
 		if (row_tmp == NULL)
 			return (free_row_ptr(row_ptr, x));
-		row_tmp->x = x;
-		row_tmp->y = y;
-		row_tmp->z = ft_atoi(line[x]);
-		strchr_ptr = ft_strstr(line[x], "0x");
-		if (strchr_ptr != NULL && strchr_ptr[2] != '\0')
-			row_tmp->color = get_valid_color(strchr_ptr);
-		else
-			row_tmp->color = DEFAULT_COLOR;
+		fill_map_point(x, y, line[x], &row_tmp);
 		row_ptr[x] = row_tmp;
 		x++;
 	}
