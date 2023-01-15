@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 01:06:28 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 14:39:35 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:31:54 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_menu(t_mlx mlx)
 	ft_string_put(mlx, 57, y += 25, "O - Zoom out");
 	ft_string_put(mlx, 57, y += 25, "I - Zoom in");
 	ft_string_put(mlx, 15, y += 30, "Rotate:");
-	ft_string_put(mlx, 57, y += 25, "A-E-Z-S-Q-D");
+	ft_string_put(mlx, 57, y += 25, "Q-E-W-S-A-D");
 	ft_string_put(mlx, 15, y += 30, "Change projection:");
 	ft_string_put(mlx, 57, y += 25, "P");
 	ft_string_put(mlx, 15, y += 30, "Reset view:");
