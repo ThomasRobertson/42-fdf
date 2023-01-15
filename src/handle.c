@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:53:09 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 05:14:42 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:30:59 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	handle_keypress(int keysum, t_hook_bundle *hook)
 		handle_change_projection(hook);
 	else if (keysum == XK_x || keysum == XK_X)
 		handle_reset(hook);
-	else if (keysum == XK_z || keysum == XK_Z || keysum == XK_s || \
+	else if (keysum == XK_w || keysum == XK_W || keysum == XK_s || \
 		keysum == XK_S || keysum == XK_q || keysum == XK_Q || \
 		keysum == XK_d || keysum == XK_D || keysum == XK_a || \
 		keysum == XK_A || keysum == XK_e || keysum == XK_E)
@@ -53,15 +53,15 @@ int	handle_change_projection(t_hook_bundle *hook)
 
 int	handle_rotate_map(int keysum, t_hook_bundle *hook)
 {
-	if (keysum == XK_z || keysum == XK_Z)
-		hook->map->rotate_value.x += 0.05;
-	else if (keysum == XK_s || keysum == XK_S)
+	if (keysum == XK_w || keysum == XK_W)
 		hook->map->rotate_value.x -= 0.05;
-	else if (keysum == XK_q || keysum == XK_Q)
+	else if (keysum == XK_s || keysum == XK_S)
+		hook->map->rotate_value.x += 0.05;
+	else if (keysum == XK_a || keysum == XK_A)
 		hook->map->rotate_value.y -= 0.05;
 	else if (keysum == XK_d || keysum == XK_D)
 		hook->map->rotate_value.y += 0.05;
-	else if (keysum == XK_a || keysum == XK_A)
+	else if (keysum == XK_q| keysum == XK_Q)
 		hook->map->rotate_value.z += 0.05;
 	else if (keysum == XK_e || keysum == XK_E)
 		hook->map->rotate_value.z -= 0.05;
