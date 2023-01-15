@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:53:09 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 05:14:24 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:19:51 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,7 @@ int	handle_zoom_map(int keysum, t_hook_bundle *hook)
 
 int	handle_reset(t_hook_bundle *hook)
 {
-	hook->map->rotate_value.x = DEFAULT_ROTATE;
-	hook->map->rotate_value.y = DEFAULT_ROTATE;
-	hook->map->rotate_value.z = DEFAULT_ROTATE;
-	hook->map->margin.bottom = BOTTOM_MARGIN;
-	hook->map->margin.top = TOP_MARGIN;
-	hook->map->margin.left = LEFT_MARGIN;
-	hook->map->margin.right = RIGHT_MARGIN;
-	hook->map->proj = DEFAULT_PROJ;
-	render(*(hook->map), *(hook->img), *(hook->mlx));
+	first_render(hook->map, *(hook->img), hook->mlx);
 	return (RETURN_SUCCESS);
 }
 
