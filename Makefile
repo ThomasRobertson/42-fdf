@@ -17,8 +17,8 @@
 NAME= fdf
 
 CC= clang
-CFLAGS= -Wall -Werror -Wextra -g3 $(INCLUDE)
-LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm
+CFLAGS= -Wall -Werror -Wextra -g3 $(INCLUDE) #-fsanitize=address
+LDFLAGS= -L$(MLX_DIR) -L$(LIBFT_DIR) -lmlx -lXext -lX11 -lm #-fsanitize=address
 DEPFLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
 
 INCLUDE = -I$(INCLUDE_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
@@ -51,6 +51,7 @@ SRC_FILE=	\
 			main.c \
 			math.c \
 			menu.c \
+			parse_map_clean.c \
 			parse_map.c \
 			process_map.c \
 			render.c \

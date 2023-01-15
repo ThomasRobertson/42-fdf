@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:44:56 by troberts          #+#    #+#             */
-/*   Updated: 2022/12/08 20:39:05 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 04:45:03 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,7 @@ t_map_point	**convert_to_t_map_point(char **line, int y, unsigned int line_len)
 	{
 		row_tmp = malloc(sizeof(*row_tmp));
 		if (row_tmp == NULL)
-		{
-			return (RETURN_FAILURE); // Todo : not everything is cleaned.
-		}
+			return (free_row_ptr(row_ptr, x));
 		row_tmp->x = x;
 		row_tmp->y = y;
 		row_tmp->z = ft_atoi(line[x]);
@@ -126,9 +124,7 @@ int	get_map_from_t_list(t_list *lines, t_map_data *map)
 	{
 		map_ptr[i] = convert_to_t_map_point(lines->content, i, map->nbr_line);
 		if (map_ptr[i] == NULL)
-		{
-			return (RETURN_FAILURE); // Todo : not everything is cleaned.
-		}
+			return (free_map_ptr(map_ptr, i, map->nbr_line));
 		i++;
 		lines = lines->next;
 	}

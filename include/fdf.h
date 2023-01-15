@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 00:28:15 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 04:30:17 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ t_map_point		process_point(t_map_data map, t_map_point point);
 int				error_args(void);
 int				error_init_windows(t_map_data map);
 int				error_new_image(t_mlx mlx, t_map_data map);
+int				error_parse(void);
 
 // FIND MIN MAX
 void			find_max_min_x(t_map_data *map);
@@ -193,6 +194,10 @@ void			draw_menu(t_mlx mlx);
 
 // PARSE MAP
 int				parse_map(char *filename, t_map_data *map);
+
+// PARSE MAP CLEAN
+t_map_point		**free_row_ptr(t_map_point **row_ptr, int x);
+int				free_map_ptr(t_map_point ***map_ptr, int i, int nbr_line);
 
 // PROCESS MAP
 t_map_point		offset_point(t_map_point point, t_map_data map);

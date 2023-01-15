@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:34:36 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 00:28:47 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 04:54:52 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (error_args());
 	if (!parse_map(av[1], &map))
-		return (EXIT_FAILURE);
+		return (error_parse());
 	if (!init_window(&mlx))
 		return (error_init_windows(map));
 	if (!ft_mlx_new_image(mlx, &img))
 		return (error_new_image(mlx, map));
 	first_render(&map, img, &mlx);
 	set_up_look_and_hook(&mlx, &img, &map, &hook_bundle);
-	return (clean_exit(mlx, img, &map));
+	clean_exit(mlx, img, &map);
+	return (EXIT_SUCCESS);
 }
