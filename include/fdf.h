@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:29:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 05:36:05 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:52:47 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 
 # define WIN_W 1500
 # define WIN_H 900
+
+# define USE_COLOR 0
 
 # define LEFT_MARGIN 0.10
 # define RIGHT_MARGIN 0.10

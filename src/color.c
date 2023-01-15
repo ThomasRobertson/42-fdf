@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 20:04:53 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/14 02:08:49 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:53:41 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ unsigned int	get_color_gradient(t_map_point start, t_map_point end, \
 	t_color	color;
 	double	percent;
 
+	if (!USE_COLOR)
+		return (DEFAULT_COLOR);
 	if ((int)start.color == (int)end.color)
 		return (start.color);
 	if (fabs(end.y - start.y) >= fabs(end.x - start.x))
