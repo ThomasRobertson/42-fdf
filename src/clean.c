@@ -6,7 +6,7 @@
 /*   By: troberts <troberts@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 20:42:31 by troberts          #+#    #+#             */
-/*   Updated: 2023/01/15 00:18:50 by troberts         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:07:02 by troberts         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	clean_window_display(t_mlx mlx, int return_code)
 {
 	mlx_destroy_window(mlx.mlx_ptr, mlx.win_ptr);
+	mlx.win_ptr = NULL;
 	return (clean_display(mlx, return_code));
 }
 
